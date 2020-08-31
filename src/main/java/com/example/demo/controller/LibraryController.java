@@ -53,8 +53,9 @@ public class LibraryController {
         File imageFolder = new File(folder);
         File f = new File(imageFolder, StringUtils.getRandomString(6) + file.getOriginalFilename()
                 .substring(file.getOriginalFilename().length() - 4));
-        if (!f.getParentFile().exists())
+        if (!f.getParentFile().exists()) {
             f.getParentFile().mkdirs();
+        }
         try {
             file.transferTo(f);
             String imgURL = "http://localhost:8443/api/file/" + f.getName();
